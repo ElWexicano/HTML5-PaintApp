@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Paint</title>
+		<link href="stylesheets/normalize.css" rel="stylesheet">
+		<link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+		<link href="stylesheets/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container-fluid span14 well">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<a href="#" class="brand">Simple Paint App</a>
+				
+					<ul class="nav">
+						<li><a id="newCanvas" href="#newPaintModal" data-toggle="modal"><i class="icon-file"></i> New</a></li>
+						<li><a id="saveCanvas" href="#"><i class="icon-download"></i> Save</a></li>
+						<li><a id="clearCanvas" href="#"><i class="icon-remove"></i> Clear</a></li>
+					</ul>
+					<form class="navbar-form pull-left">
+						<div id="colorPalette" class="btn-group btn-small">
+							<a name="000000" class="btn btn-small btn-inverse active" href="#">&nbsp;</a>
+							<a name="E0534E" class="btn btn-small btn-danger" href="#">&nbsp;</a>
+							<a name="FAA630" class="btn btn-small btn-warning" href="#">&nbsp;</a>
+							<a name="5CB55C" class="btn btn-small btn-success" href="#">&nbsp;</a>
+							<a name="48AECC" class="btn btn-small btn-info" href="#">&nbsp;</a>
+							<a name="0B8BCC" class="btn btn-small btn-primary" href="#">&nbsp;</a>
+						</div>
+					</form>
+
+				</div>
+			</div>
+			
+			<canvas id="myCanvas" width="1152" height="748"></canvas>
+			
+			<div id="newPaintModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<h3 id="myModalLabel">New Painting</h3>
+				</div>
+				<div class="modal-body">
+					<p>One fine body</p>
+				</div>
+			</div>
+			
+		</div>
+		
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap.js"></script>
+		<script src="scripts/index.js"></script>
+	</body>
+</html>

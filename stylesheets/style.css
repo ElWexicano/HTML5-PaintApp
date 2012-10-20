@@ -1,0 +1,12 @@
+body {
+	margin: 20px;
+}
+
+canvas {
+    background: #fff;
+    border: 1px solid #ccc;    
+}
+
+canvas:hover, canvas:active {
+	cursor: crosshair;
+}
