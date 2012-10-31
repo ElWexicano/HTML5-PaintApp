@@ -1,72 +1,8 @@
-function Paint(canvas) {
-	var self = this;
-	
-	this.canvas = canvas;
-	this.context = this.canvas[0].getContext("2d");
-	
-	this.clickX = [];
-	this.clickY = [];
-	this.clickDrag = [];
-	this.paint = false;
-	
-	this.strokeColour = "#000000";
-	this.brushSize = 3;
-}
-
-
-$(document).ready( function() {
-	
+$( function() {
 	var canvas = $("#myCanvas");
-	var context = canvas[0].getContext("2d");
-	var paint = false;
-	var clickX = [];
-	var clickY = [];
-	var clickDrag = [];
-	var brushSize = 4;
-	var strokeColour = "#000000";
-	var i = 0;
-
-	function addClick(x, y, dragging) {
-		clickX.push(x);
-		clickY.push(y);
-		clickDrag.push(dragging);
-	}
-
-	function Draw() {
-		context.strokeStyle = strokeColour;
-		context.lineJoin = "round";
-		context.lineWidth = brushSize;
-		
-		while (i < clickX.length) {
-			context.beginPath();
-			
-			if (clickDrag[i] && i) {
-				context.moveTo(clickX[i - 1], clickY[i - 1]);
-			} else {
-				context.moveTo(clickX[i] - 1, clickY[i]);
-			}
-			
-			context.closePath();
-			context.lineTo(clickX[i], clickY[i]);
-			context.stroke();
-			i++;
-		}
-		
-	}
-
-	function ClearCanvas() {
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		var w = canvas.width;
-		canvas.width = 1;
-		canvas.width = w;
-	}
-
-	function stopPainting() {
-		paint = false;
-	}
+	var paint = new Paint(canvas[0].getContext("2d"));
 
 	function getMousePosition(event, canvas) {
-
 		var x, y;
 
 		if (event.offsetX) {
@@ -80,49 +16,69 @@ $(document).ready( function() {
 		return {
 			x: x,
 			y: y
-		}
+		};
 	}
 
 	canvas.mousedown(function(e) {
 		var pos = getMousePosition(e, this);
-
-		paint = true;
-		addClick(pos.x, pos.y);
-		Draw();
+		paint.isPainting = true;
+		paint.addClick(pos.x, pos.y, false);
+		paint.draw();
 	});
 
 	canvas.mousemove(function(e) {
-		if (paint) {
+		if (paint.isPainting) {
 			var pos = getMousePosition(e, this);
-
-			addClick(pos.x, pos.y, true);
-			Draw();
+			paint.addClick(pos.x, pos.y, true);
+			paint.draw();
 		}
 	});
 
-	canvas.mouseup(function() {
-		stopPainting();
+	canvas.mouseup(function(e) {
+		paint.stop();
 	});
 
-	canvas.mouseleave(function() {
-		stopPainting();
+	canvas.mouseleave(function(e) {
+		paint.stop();
 	});
 
+	$("#clearButton").click(function() {
+		paint.clear();
+	});
+	
 	$("#colorPalette a").click(function() {
-		$('#colorPalette a').removeClass("active");
+		$("#colorPalette a").removeClass("active");
 		$(this).addClass("active");
-		strokeColour = "#"+this.name;
+		paint.options.brushColour = "#"+this.name;
 	});
 	
-	$('#newPaintModal').modal({
-		backdrop: true
+	$("#newPaintModal").modal({
+		backdrop: 'static',
+		keyboard: false
 	});
 	
-	$('#clearCanvas').click(function() {
-		console.log("Clearing Canvas");
-	
-		ClearCanvas();
+	$("#clearCanvasBtn").click(function() {
+		paint.clear();
 	});
 	
+	$("#saveCanvasBtn").click(function() {
+		var dataURL = canvas[0].toDataURL();
+	});
 	
+	$("#blankCanvas").click(function() {
+		paint.clear();
+		$("#newPaintModal").modal("hide");
+	});
+	
+	$("#batmanCanvas").click(function() {
+		paint.clear();
+		paint.drawImage("img/batman.gif");
+		$("#newPaintModal").modal("hide");
+	});
+	
+	$("#spidermanCanvas").click(function() {
+		paint.clear();
+		paint.drawImage("img/spiderman.gif");
+		$("#newPaintModal").modal("hide");
+	});
 });

@@ -10,3 +10,12 @@ canvas {
 canvas:hover, canvas:active {
 	cursor: crosshair;
 }
+
+.compatibleBrowsersIcon {
+	width: 24px;
+	height: 24px;
+}
+
+.canvasIcon:hover {
+	cursor: pointer;
+}
