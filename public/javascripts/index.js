@@ -62,8 +62,8 @@ $( function() {
 	});
 	
 	$("#saveCanvasBtn").click(function() {
-		var dataURL = canvas[0].toDataURL();
-		$.post("/saveCanvas", { dataURL: dataURL } );
+		var dataURL = canvas[0].toDataURL().replace('data:image/png', 'data:application/octet-stream');
+		window.open(dataURL);
 	});
 	
 	$("#blankCanvas").click(function() {
