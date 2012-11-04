@@ -4,6 +4,11 @@ html
     meta(charset='UTF-8')
     title Paint
     script(src='javascripts/modernizr.js')
+    script(type='text/javascript')
+      Modernizr.load({
+      test: Modernizr.canvas,
+      nope: 'javascripts/excanvas.js'
+      });
     link(href='stylesheets/normalize.css', rel='stylesheet')
     link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
     link(href='stylesheets/styles.css', rel='stylesheet')
