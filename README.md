@@ -8,7 +8,9 @@ The application is currently deployed at [SimplePaint.cloudfoundry.com](http://s
 Description
 -------
 
-This simple paint application allows a user to draw images or colour in images. The user can clear the canvas to start over and they can also save the image.
+This simple paint application allows a user to draw images or colour in images. The user can clear the canvas to start over and they can also save the image. Below is a screenshot of the application.
+
+![A screenshot of SimplePaint](http://db.tt/iCjwlJ2Z)
 
 
 Technologies
