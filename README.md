@@ -23,5 +23,5 @@ Author
 
 **Shane Doyle**
 
-+ http://twitter.com/iamshanedoyle
-+ http://github.com/iamshanedoyle
++ http://twitter.com/elwexicano
++ http://github.com/ElWexicano
